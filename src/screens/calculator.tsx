@@ -1,13 +1,13 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import FlagSelect from '../components/flagSelect';
+import React from 'react'
+import { View } from 'react-native'
+import FlagSelect from '../components/flagSelect'
 
 const CalculatorScreen: React.FC = () => {
-    return (
-        <View>
-            <FlagSelect text='You send exactly' />
-        </View>
-    );
-};
+  return (
+    <View>
+      <FlagSelect text="You send exactly" />
+    </View>
+  )
+}
 
-export default CalculatorScreen;
+export default CalculatorScreen
