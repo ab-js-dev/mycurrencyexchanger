@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native'
-import CalculatorScreen from './src/screens/calculator'
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import CalculatorScreen from './src/screens/calculator';
 
 interface CurrencyInputProps {
-  currencyCode: string
-  value: string
-  onChangeValue: (value: string) => void
-  editable?: boolean
+  currencyCode: string;
+  value: string;
+  onChangeValue: (value: string) => void;
+  editable?: boolean;
 }
 
 const CurrencyInput: React.FC<CurrencyInputProps> = ({
   currencyCode,
   value,
   onChangeValue,
-  editable = true
+  editable = true,
 }) => {
   return (
     <View style={styles.inputContainer}>
@@ -25,12 +25,12 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
         editable={editable}
       />
     </View>
-  )
-}
+  );
+};
 
 const CurrencyTransfer: React.FC = () => {
-  const [aedAmount, setAedAmount] = useState('2500.00')
-  const [phpAmount, setPhpAmount] = useState('3560.35')
+  const [aedAmount, setAedAmount] = useState('2500.00');
+  const [phpAmount, setPhpAmount] = useState('3560.35');
 
   return (
     <View style={styles.container}>
@@ -57,43 +57,43 @@ const CurrencyTransfer: React.FC = () => {
       </TouchableOpacity> */}
       <CalculatorScreen />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 20,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: 'gray',
     borderWidth: 1,
-    marginBottom: 20
+    marginBottom: 20,
   },
   flagIcon: {
     width: 30,
     height: 20,
-    margin: 10
+    margin: 10,
   },
   input: {
     flex: 1,
-    padding: 10
+    padding: 10,
   },
   processingTime: {
     fontWeight: 'bold',
-    marginBottom: 5
+    marginBottom: 5,
   },
   button: {
     backgroundColor: '#007bff',
     padding: 15,
     alignItems: 'center',
-    borderRadius: 5
+    borderRadius: 5,
   },
   buttonText: {
     color: 'white',
-    fontWeight: 'bold'
-  }
-})
+    fontWeight: 'bold',
+  },
+});
 
-export default CurrencyTransfer
+export default CurrencyTransfer;

@@ -5,7 +5,7 @@ import FlagSelect from '../components/flagSelect'
 const CalculatorScreen: React.FC = () => {
   return (
     <View>
-      <FlagSelect text="You send exactly" />
+      <FlagSelect text="You send exactly" onSelect={() => null}/>
     </View>
   )
 }

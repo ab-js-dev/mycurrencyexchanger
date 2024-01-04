@@ -5,19 +5,62 @@ import CountryFlag from 'react-native-country-flag' // Import the CountryFlag co
 import { countriesData } from '../consts/countries'
 import { getAllCountries, getCountryByCountryCode } from '../utils/countries'
 
-const Flag = (props: { countryCode: string }): ReactElement<{ countryCode: string }> => <CountryFlag isoCode={props.countryCode} size={25} />
+// local component for displaying the flag
+const Flag = (props: { countryCode: string }): ReactElement<{ countryCode: string }> => (
+  <CountryFlag isoCode={props.countryCode} size={25} />
+)
+
+// local compoment for displaying the country picker in a modal
+const CountryPicker = (props: {
+  selectedCountry: string
+  setSelectedCountry: (countryCode: string) => void
+}): ReactElement => {
+  const { selectedCountry, setSelectedCountry } = props
+  const countries = getAllCountries()
+
+  return (
+    <Picker
+      testID="countryPicker"
+      selectedValue={selectedCountry}
+      onValueChange={itemValue => {
+        setSelectedCountry(itemValue)
+      }}>
+      {countries.map(country => (
+        <Picker.Item
+          key={country.countryCode}
+          label={country.currency}
+          value={country.countryCode}
+        />
+      ))}
+    </Picker>
+  )
+}
 
 export interface FlagSelectProps {
   text: string
+  onSelect: (countryCode: string) => void
 }
+
+// The main component
 const FlagSelect = (props: FlagSelectProps): ReactElement => {
+  const { text, onSelect } = props
   const [selectedCountry, setSelectedCountry] = useState(countriesData[0].countryCode)
   const [modalVisible, setModalVisible] = useState(false)
+  // function to be called when a country is selected
+  const onSelectCountry = (countryCode: string): void => {
+    setSelectedCountry(countryCode)
+    setModalVisible(false)
+    onSelect(countryCode)
+  }
 
   return (
-    <View>
-      <TouchableOpacity onPress={() => { setModalVisible(true) }} style={styles.container}>
-        <Text style={styles.text}>{props.text}</Text>
+    <View style={styles.container} testID="FlagSelect">
+      <TouchableOpacity
+        onPress={() => {
+          setModalVisible(true)
+        }}
+        style={styles.button}>
+        <Text style={styles.text}>{text}</Text>
         <View style={styles.flagContainer}>
           <Flag countryCode={selectedCountry} />
           <Text style={styles.currencyText}>
@@ -27,25 +70,15 @@ const FlagSelect = (props: FlagSelectProps): ReactElement => {
       </TouchableOpacity>
 
       <Modal
+        testID="countryPickerModal"
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => { setModalVisible(false) }}>
+        onRequestClose={() => {
+          setModalVisible(false)
+        }}>
         <View style={styles.modalView}>
-          <Picker
-            selectedValue={selectedCountry}
-            onValueChange={(itemValue, itemIndex) => {
-              setSelectedCountry(itemValue)
-              setModalVisible(false)
-            }}>
-            {getAllCountries().map((country, index) => (
-              // The Picker.Item label can remain as is since it is just a string
-              <Picker.Item
-                key={index}
-                label={country.currency}
-                value={country.countryCode}></Picker.Item>
-            ))}
-          </Picker>
+          <CountryPicker selectedCountry={selectedCountry} setSelectedCountry={onSelectCountry} />
         </View>
       </Modal>
     </View>
@@ -54,31 +87,50 @@ const FlagSelect = (props: FlagSelectProps): ReactElement => {
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center'
+  },
+  button: {
     backgroundColor: '#6200EE', // Based on the provided picture
     borderRadius: 4,
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    padding: 10
+    padding: 10,
+    gap: 10
   },
   flagContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
-
+    justifyContent: 'space-between',
+    gap: 10
   },
   currencyText: {
-    // Your text style
     color: 'white',
     fontWeight: 'bold'
   },
   text: {
-    // Your text style
-    color: 'white',
-    padding: 10
+    color: 'white'
   },
   modalView: {
-    // Your modal view style
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'white',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    paddingTop: 20,
+    height: '50%',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: -2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
   }
 })
 
