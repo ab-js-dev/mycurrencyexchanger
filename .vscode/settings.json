@@ -2,5 +2,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "prettier.semi": false,
-  "prettier.trailingComma": "none"
+  "prettier.trailingComma": "none",
+  "java.configuration.updateBuildConfiguration": "disabled"
 }

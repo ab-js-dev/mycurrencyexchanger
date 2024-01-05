@@ -27,7 +27,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.anonymous.myCurrencyExchanger</string>
+          <string>com.hubpay.myCurrencyExchanger</string>
         </array>
       </dict>
     </array>

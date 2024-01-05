@@ -1,4 +1,4 @@
-package com.anonymous.myCurrencyExchanger;
+package com.hubpay.myCurrencyExchanger;
 
 import android.app.Application;
 import android.content.res.Configuration;

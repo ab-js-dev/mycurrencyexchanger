@@ -1,40 +1,9 @@
 import React, { type ReactElement, useState } from 'react'
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native'
-import { Picker } from '@react-native-picker/picker'
-import CountryFlag from 'react-native-country-flag' // Import the CountryFlag component
-import { countriesData } from '../consts/countries'
-import { getAllCountries, getCountryByCountryCode } from '../utils/countries'
-
-// local component for displaying the flag
-const Flag = (props: { countryCode: string }): ReactElement<{ countryCode: string }> => (
-  <CountryFlag isoCode={props.countryCode} size={25} />
-)
-
-// local compoment for displaying the country picker in a modal
-const CountryPicker = (props: {
-  selectedCountry: string
-  setSelectedCountry: (countryCode: string) => void
-}): ReactElement => {
-  const { selectedCountry, setSelectedCountry } = props
-  const countries = getAllCountries()
-
-  return (
-    <Picker
-      testID="countryPicker"
-      selectedValue={selectedCountry}
-      onValueChange={itemValue => {
-        setSelectedCountry(itemValue)
-      }}>
-      {countries.map(country => (
-        <Picker.Item
-          key={country.countryCode}
-          label={country.currency}
-          value={country.countryCode}
-        />
-      ))}
-    </Picker>
-  )
-}
+import { countriesData } from '../../consts/countries'
+import { getCountryByCountryCode } from '../../utils/countries'
+import { Flag } from '../atoms/flag'
+import { CountryPicker } from '../atoms/picker'
 
 export interface FlagSelectProps {
   text: string
@@ -61,7 +30,7 @@ const FlagSelect = (props: FlagSelectProps): ReactElement => {
         }}
         style={styles.button}>
         <Text style={styles.text}>{text}</Text>
-        <View style={styles.flagContainer}>
+        <View style={styles.flagContainer} testID="flag">
           <Flag countryCode={selectedCountry} />
           <Text style={styles.currencyText}>
             {getCountryByCountryCode(selectedCountry)?.currency}

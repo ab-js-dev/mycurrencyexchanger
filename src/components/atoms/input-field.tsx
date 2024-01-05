@@ -26,8 +26,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#0D1F2D',
-    textAlign: 'right',
-    outline: 'none'
+    textAlign: 'right'
   }
 })
 

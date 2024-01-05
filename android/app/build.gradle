@@ -81,9 +81,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace 'com.anonymous.myCurrencyExchanger'
+    namespace 'com.hubpay.myCurrencyExchanger'
     defaultConfig {
-        applicationId 'com.anonymous.myCurrencyExchanger'
+        applicationId 'com.hubpay.myCurrencyExchanger'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

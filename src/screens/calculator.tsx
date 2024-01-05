@@ -1,6 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
-import ExchangeField from '../components/exchange-field'
+import ExchangeField from '../components/organism/exchange-field'
+import FeesData from '../components/organism/fees-data'
 
 const CalculatorScreen: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const CalculatorScreen: React.FC = () => {
         onAmountChange={() => null}
         onCurrencyChange={() => null}
       />
+      <FeesData />
       <ExchangeField
         buttonText="Receptient gets"
         isEditable={false}
@@ -19,5 +21,4 @@ const CalculatorScreen: React.FC = () => {
     </View>
   )
 }
-
 export default CalculatorScreen
