@@ -1,11 +1,21 @@
 import React from 'react'
 import { View } from 'react-native'
-import FlagSelect from '../components/flagSelect'
+import ExchangeField from '../components/exchange-field'
 
 const CalculatorScreen: React.FC = () => {
   return (
     <View>
-      <FlagSelect text="You send exactly" onSelect={() => null}/>
+      <ExchangeField
+        buttonText="You will send"
+        onAmountChange={() => null}
+        onCurrencyChange={() => null}
+      />
+      <ExchangeField
+        buttonText="Receptient gets"
+        isEditable={false}
+        onAmountChange={() => null}
+        onCurrencyChange={() => null}
+      />
     </View>
   )
 }

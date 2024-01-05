@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
     padding: 10,
-    gap: 10
+    gap: 10,
+    width: 140
   },
   flagContainer: {
     flexDirection: 'row',
