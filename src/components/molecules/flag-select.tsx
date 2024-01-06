@@ -1,9 +1,9 @@
 import React, { type ReactElement, useState } from 'react'
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native'
-import { countriesData } from '../../consts/countries'
-import { getCountryByCountryCode } from '../../utils/countries'
-import { Flag } from '../atoms/flag'
-import { CountryPicker } from '../atoms/picker'
+import { countriesData } from '@static/countries'
+import { getCountryByCountryCode } from '@utils/countries'
+import { Flag } from '@atoms/flag'
+import { CountryPicker } from '@atoms/picker'
 
 export interface FlagSelectProps {
   text: string

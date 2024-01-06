@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react-native'
-import VerticalDots from '../../../components/atoms/verical-dots'
+import VerticalDots from '@atoms/verical-dots'
 
 jest.mock('@expo/vector-icons', () => {
   return {

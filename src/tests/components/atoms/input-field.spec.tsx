@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react-native'
-import InputField from '../../../components/atoms/input-field'
+import InputField from '@atoms/input-field'
 
 describe('InputField Component', () => {
   it('renders correctly', () => {
@@ -35,7 +35,6 @@ describe('InputField Component', () => {
     expect(getByTestId('inputField').props.keyboardType).toBe('decimal-pad')
   })
 
-  // Optional: Test for style
   it('has the correct style applied', () => {
     const { getByTestId } = render(<InputField onAmountChange={() => {}} />)
     expect(getByTestId('inputField').props.style).toMatchObject({

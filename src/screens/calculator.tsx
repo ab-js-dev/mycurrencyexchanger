@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
-import ExchangeField from '../components/organisms/exchange-field'
-import FeesData from '../components/organisms/fees-data'
+import ExchangeField from '@organisms/exchange-field'
+import FeesData from '@organisms/fees-data'
 
 const CalculatorScreen: React.FC = () => {
   return (

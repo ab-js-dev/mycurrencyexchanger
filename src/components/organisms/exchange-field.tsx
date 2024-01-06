@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import FlagSelect from '../molecules/flag-select' // Adjust import path as needed
-import InputField from '../atoms/input-field' // Adjust import path as needed
+import FlagSelect from '@molecules/flag-select' // Adjust import path as needed
+import InputField from '@atoms/input-field' // Adjust import path as needed
 
 interface ExchangeFieldProps {
   buttonText: string

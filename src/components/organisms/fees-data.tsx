@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import VerticalDots from '../atoms/verical-dots'
-import AccordionComponent from '../molecules/accordion'
+import VerticalDots from '@atoms/verical-dots'
+import AccordionComponent from '@molecules/accordion'
 
 const FeesData: React.FC = () => {
   const [isAccordionOpen, setIsAccordionOpen] = React.useState(false)

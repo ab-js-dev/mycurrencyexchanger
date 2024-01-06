@@ -1,5 +1,5 @@
 import React, { type ReactElement } from 'react'
-import { getAllCountries } from '../../utils/countries'
+import { getAllCountries } from '@utils/countries'
 import { Picker } from '@react-native-picker/picker'
 
 export const CountryPicker = (props: {
