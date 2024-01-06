@@ -1,4 +1,4 @@
-interface Tiers {
+export interface Tiers {
   limit: number
   fee: number
 }
