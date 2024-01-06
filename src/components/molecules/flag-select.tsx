@@ -29,6 +29,7 @@ const FlagSelect = (props: FlagSelectProps): ReactElement => {
   return (
     <View style={styles.container} testID="FlagSelect">
       <TouchableOpacity
+        disabled={disabled ?? false}
         onPress={() => {
           !(disabled ?? false) && setModalVisible(true)
         }}
@@ -62,7 +63,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     alignItems: 'flex-start',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 10
   },
   button: {
     backgroundColor: '#6200EE',
