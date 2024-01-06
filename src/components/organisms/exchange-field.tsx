@@ -5,6 +5,8 @@ import InputField from '../atoms/input-field' // Adjust import path as needed
 
 interface ExchangeFieldProps {
   buttonText: string
+  isCountryFieldDisabled?: boolean
+  initialCountryCode?: string
   isEditable?: boolean
   onCurrencyChange: (currencyCode: string) => void
   onAmountChange: (amount: string) => void
@@ -13,12 +15,16 @@ interface ExchangeFieldProps {
 const ExchangeField: React.FC<ExchangeFieldProps> = ({
   buttonText,
   isEditable,
+  isCountryFieldDisabled = false,
+  initialCountryCode,
   onCurrencyChange,
   onAmountChange
 }) => {
   return (
     <View style={styles.exchangeFieldContainer}>
       <FlagSelect
+        initialCountryCode={initialCountryCode}
+        disabled={isCountryFieldDisabled}
         text={buttonText}
         onSelect={(countryCode: string) => {
           onCurrencyChange(countryCode)

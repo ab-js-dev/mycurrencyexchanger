@@ -1,18 +1,20 @@
 import React from 'react'
 import { View } from 'react-native'
-import ExchangeField from '../components/organism/exchange-field'
-import FeesData from '../components/organism/fees-data'
+import ExchangeField from '../components/organisms/exchange-field'
+import FeesData from '../components/organisms/fees-data'
 
 const CalculatorScreen: React.FC = () => {
   return (
     <View>
       <ExchangeField
+        isCountryFieldDisabled={true}
         buttonText="You will send"
         onAmountChange={() => null}
         onCurrencyChange={() => null}
       />
       <FeesData />
       <ExchangeField
+        isCountryFieldDisabled={false}
         buttonText="Receptient gets"
         isEditable={false}
         onAmountChange={() => null}

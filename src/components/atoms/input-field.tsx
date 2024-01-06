@@ -14,6 +14,7 @@ const InputField: React.FC<InputFieldProps> = ({ isEditable = true, onAmountChan
       onChangeText={onAmountChange}
       placeholder="0.00"
       keyboardType="decimal-pad"
+      testID="inputField"
     />
   )
 }

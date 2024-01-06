@@ -7,13 +7,17 @@ import { CountryPicker } from '../atoms/picker'
 
 export interface FlagSelectProps {
   text: string
+  disabled?: boolean
+  initialCountryCode?: string
   onSelect: (countryCode: string) => void
 }
 
 // The main component
 const FlagSelect = (props: FlagSelectProps): ReactElement => {
-  const { text, onSelect } = props
-  const [selectedCountry, setSelectedCountry] = useState(countriesData[0].countryCode)
+  const { text, disabled, initialCountryCode, onSelect } = props
+  const [selectedCountry, setSelectedCountry] = useState(
+    initialCountryCode ?? countriesData[0].countryCode
+  )
   const [modalVisible, setModalVisible] = useState(false)
   // function to be called when a country is selected
   const onSelectCountry = (countryCode: string): void => {
@@ -26,7 +30,7 @@ const FlagSelect = (props: FlagSelectProps): ReactElement => {
     <View style={styles.container} testID="FlagSelect">
       <TouchableOpacity
         onPress={() => {
-          setModalVisible(true)
+          !(disabled ?? false) && setModalVisible(true)
         }}
         style={styles.button}>
         <Text style={styles.text}>{text}</Text>

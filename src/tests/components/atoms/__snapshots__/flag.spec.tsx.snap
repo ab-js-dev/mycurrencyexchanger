@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flag Component matches snapshot 1`] = `
+<Image
+  source={
+    {
+      "uri": "https://flagcdn.com/w80/us.png",
+    }
+  }
+  style={
+    [
+      {
+        "height": 25,
+        "width": 40,
+      },
+      undefined,
+    ]
+  }
+/>
+`;

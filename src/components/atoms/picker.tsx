@@ -18,6 +18,7 @@ export const CountryPicker = (props: {
       }}>
       {countries.map(country => (
         <Picker.Item
+          testID="picker-item"
           key={country.countryCode}
           label={country.currency}
           value={country.countryCode}

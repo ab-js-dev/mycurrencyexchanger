@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent, waitFor } from '@testing-library/react-native'
-import FlagSelect from '../../components/molecules/flag-select'
+import FlagSelect from '../../../components/molecules/flag-select'
 
 const onSelectMock = jest.fn()
 beforeEach(() => {
