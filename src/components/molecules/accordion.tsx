@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, LayoutAnimation } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 interface AccordionComponentProps {
   title: string
   children: React.ReactNode
+  setAccordionState: (state: boolean) => void
 }
 
-const AccordionComponent: React.FC<AccordionComponentProps> = ({ title, children }) => {
+const AccordionComponent: React.FC<AccordionComponentProps> = ({
+  title,
+  children,
+  setAccordionState
+}) => {
   const [expanded, setExpanded] = useState(false)
-  console.log('AccordionComponent')
 
   const toggleExpanded = (): void => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
     setExpanded(!expanded)
+    setAccordionState(expanded)
   }
 
   return (
@@ -50,9 +54,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   feesText: {
-    fontSize: 16,
-    color: '#333',
-    marginRight: 8
+    marginRight: 8,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#8475fc'
   },
   content: {
     padding: 16,
