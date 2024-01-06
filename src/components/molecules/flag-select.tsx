@@ -19,7 +19,7 @@ const FlagSelect = (props: FlagSelectProps): ReactElement => {
     initialCountryCode ?? countriesData[0].countryCode
   )
   const [modalVisible, setModalVisible] = useState(false)
-  // function to be called when a country is selected
+
   const onSelectCountry = (countryCode: string): void => {
     setSelectedCountry(countryCode)
     setModalVisible(false)
@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'white',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingTop: 20,
@@ -104,7 +103,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
+    backgroundColor: '#f8f8f8',
+    padding: 35
   }
 })
 

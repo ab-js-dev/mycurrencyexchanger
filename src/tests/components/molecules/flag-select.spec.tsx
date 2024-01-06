@@ -31,11 +31,11 @@ describe('FlagSelect', () => {
     const button = getByText('Select Country')
     fireEvent.press(button)
 
-    const countryPicker = getByTestId('countryPicker')
-    fireEvent(countryPicker, 'onValueChange', 'USA') // Simulate selecting 'USA'
+    const countryPickerItem = getByTestId('AE-country')
+    fireEvent.press(countryPickerItem)
 
     await waitFor(() => {
-      expect(onSelectMock).toHaveBeenCalledWith('USA')
+      expect(onSelectMock).toHaveBeenCalledWith('AE')
     })
   })
 
@@ -47,8 +47,8 @@ describe('FlagSelect', () => {
     const button = getByText('Select Country')
     fireEvent.press(button)
 
-    const countryPicker = getByTestId('countryPicker')
-    fireEvent(countryPicker, 'onValueChange', 'USA') // Simulate selecting 'USA'
+    const countryPickerItem = getByTestId('AE-country')
+    fireEvent.press(countryPickerItem)
 
     await waitFor(() => {
       const modal = getByTestId('countryPickerModal')
