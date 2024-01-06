@@ -8,8 +8,9 @@ interface ExchangeFieldProps {
   isCountryFieldDisabled?: boolean
   initialCountryCode?: string
   isEditable?: boolean
-  onCurrencyChange: (currencyCode: string) => void
-  onAmountChange: (amount: string) => void
+  value?: string
+  onCountryChange: (currencyCode: string) => void
+  onAmountChange: (amount: number) => void
 }
 
 const ExchangeField: React.FC<ExchangeFieldProps> = ({
@@ -17,7 +18,8 @@ const ExchangeField: React.FC<ExchangeFieldProps> = ({
   isEditable,
   isCountryFieldDisabled = false,
   initialCountryCode,
-  onCurrencyChange,
+  value,
+  onCountryChange,
   onAmountChange
 }) => {
   return (
@@ -27,13 +29,14 @@ const ExchangeField: React.FC<ExchangeFieldProps> = ({
         disabled={isCountryFieldDisabled}
         text={buttonText}
         onSelect={(countryCode: string) => {
-          onCurrencyChange(countryCode)
+          onCountryChange(countryCode)
         }}
       />
       <InputField
         isEditable={isEditable}
+        calculatedValue={value}
         onAmountChange={(newAmount: string) => {
-          onAmountChange(newAmount)
+          onAmountChange(Number(newAmount))
         }}
       />
     </View>
@@ -51,7 +54,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: 'white'
   }
-  // ... other styles if needed
 })
 
 export default ExchangeField

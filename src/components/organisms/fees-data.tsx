@@ -3,8 +3,11 @@ import { View, StyleSheet } from 'react-native'
 import VerticalDots from '@atoms/verical-dots'
 import AccordionComponent from '@molecules/accordion'
 import FeesInformation from '@components/atoms/fees-info'
-
-const FeesData: React.FC = () => {
+interface FeesDataProps {
+  exchangeRate: string
+  exchangeCurrency: string
+}
+const FeesData: React.FC<FeesDataProps> = ({ exchangeCurrency, exchangeRate }: FeesDataProps) => {
   const [isAccordionOpen, setIsAccordionOpen] = React.useState(false)
   const [dotsRepeat, setDotsRepeat] = React.useState(3)
 
@@ -17,8 +20,8 @@ const FeesData: React.FC = () => {
       <VerticalDots dotsRepeat={dotsRepeat} />
       <AccordionComponent
         setAccordionState={setIsAccordionOpen}
-        exchangeRate="14"
-        exchangeCurrency="PHP">
+        exchangeRate={exchangeRate}
+        exchangeCurrency={exchangeCurrency}>
         <FeesInformation />
       </AccordionComponent>
     </View>

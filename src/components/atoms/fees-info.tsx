@@ -6,7 +6,6 @@ const renderItem = ({ item }: { item: Tiers }): ReactElement => (
   <View style={styles.itemContainer}>
     <Text style={styles.amountText}>AED {item.limit} and above</Text>
     <Text style={styles.feeText}>{(item.fee * 100).toFixed(2)}%</Text>
-    <Text style={styles.amountText}>As Fee</Text>
   </View>
 )
 const FeesInformation = (): ReactElement => {
@@ -23,9 +22,7 @@ const FeesInformation = (): ReactElement => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignSelf: 'flex-start'
-  },
+  container: {},
   header: {
     fontSize: 22,
     fontWeight: 'bold',
@@ -34,7 +31,7 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     backgroundColor: '#fff',
-    borderRadius: 10,
+    borderRadius: 5,
     padding: 15,
     marginBottom: 10,
     flexDirection: 'row',
@@ -49,7 +46,7 @@ const styles = StyleSheet.create({
   feeText: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#007AFF'
+    color: '#6200EE'
   }
 })
 

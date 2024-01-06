@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   button: {
-    backgroundColor: '#6200EE', // Based on the provided picture
-    borderRadius: 4,
+    backgroundColor: '#6200EE',
+    borderRadius: 5,
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',

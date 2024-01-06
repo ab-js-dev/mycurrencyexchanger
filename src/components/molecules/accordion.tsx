@@ -44,13 +44,14 @@ const AccordionComponent: React.FC<AccordionComponentProps> = ({
 const styles = StyleSheet.create({
   accordion: {
     flex: 1,
-    backgroundColor: '#f8f8f8'
+    backgroundColor: '#f8f8f8',
+    borderRadius: 5
   },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16
+    padding: 10
   },
   titleContainer: {
     flexDirection: 'row',
