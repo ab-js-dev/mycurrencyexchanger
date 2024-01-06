@@ -41,6 +41,7 @@ yarn-error.*
 
 # dependencies
 node_modules/
+coverage/
 
 # Expo
 .expo/

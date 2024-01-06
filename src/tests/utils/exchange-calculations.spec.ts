@@ -55,10 +55,20 @@ describe('Financial Calculations', () => {
     it('returns zero for negative amounts', () => {
       expect(calculateFees(-100)).toBe(0)
     })
+
+    it('applies the default fee percentage for amounts greater than the highest tier limit', () => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      const highestTierLimit = Math.max(...FEE_TIERS.map(tier => tier.limit))
+      const amountGreaterThanHighestTier = highestTierLimit + 1000 // Amount above the highest tier
+      const defaultFeePercentage = 0.01
+
+      expect(calculateFees(amountGreaterThanHighestTier)).toBe(
+        amountGreaterThanHighestTier * defaultFeePercentage
+      )
+    })
   })
 
   describe('calculateFinalAmount', () => {
-    // Test with standard inputs
     it('calculates the final amount correctly for standard inputs', () => {
       const amount = 1000
       const rate = 1.5
@@ -68,18 +78,15 @@ describe('Financial Calculations', () => {
       expect(calculateFinalAmount(amount, rate)).toEqual(expectedResult)
     })
 
-    // Test with zero amount
     it('returns zero for zero amount', () => {
       expect(calculateFinalAmount(0, 1.5)).toBe(0)
     })
 
-    // Test with zero rate
     it('returns zero for zero rate', () => {
       const amount = 1000
       expect(calculateFinalAmount(amount, 0)).toBe(0)
     })
 
-    // Test with negative amount
     it('handles negative amount', () => {
       const amount = -500
       const rate = 1.5
@@ -98,7 +105,5 @@ describe('Financial Calculations', () => {
 
       expect(calculateFinalAmount(amount, rate)).toEqual(expectedResult)
     })
-
-    // Add additional tests for other edge cases as needed
   })
 })
