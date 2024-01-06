@@ -3,13 +3,15 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 interface AccordionComponentProps {
-  title: string
+  exchangeRate: string
+  exchangeCurrency: string
   children: React.ReactNode
   setAccordionState: (state: boolean) => void
 }
 
 const AccordionComponent: React.FC<AccordionComponentProps> = ({
-  title,
+  exchangeRate,
+  exchangeCurrency,
   children,
   setAccordionState
 }) => {
@@ -17,13 +19,18 @@ const AccordionComponent: React.FC<AccordionComponentProps> = ({
 
   const toggleExpanded = (): void => {
     setExpanded(!expanded)
-    setAccordionState(expanded)
+    setAccordionState(!expanded)
   }
 
   return (
     <View style={styles.accordion}>
       <TouchableOpacity onPress={toggleExpanded} style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.staticLabelFirst}>1 </Text>
+          <Text style={styles.staticLabelSecond}>AED = </Text>
+          <Text style={styles.rateLabel}>{exchangeRate}</Text>
+          <Text style={styles.rateLabel}>{exchangeCurrency}</Text>
+        </View>
         <View style={styles.rightSection}>
           <Text style={styles.feesText}>Fees</Text>
           <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={20} color="black" />
@@ -45,19 +52,39 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16
   },
-  title: {
-    fontSize: 16,
-    color: '#333'
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    gap: 5
   },
+  staticLabelFirst: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#727c97'
+  },
+  rateLabel: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#727c97',
+    marginRight: 4
+  },
+
+  staticLabelSecond: {
+    fontSize: 16,
+    color: '#9fa8ba',
+    marginTop: 2
+  },
+
   rightSection: {
     flexDirection: 'row',
     alignItems: 'center'
   },
   feesText: {
     marginRight: 8,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
-    color: '#8475fc'
+    color: '#6200EE'
   },
   content: {
     padding: 16,

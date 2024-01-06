@@ -9,13 +9,16 @@ const FeesData: React.FC = () => {
   const [dotsRepeat, setDotsRepeat] = React.useState(3)
 
   useEffect(() => {
-    setDotsRepeat(isAccordionOpen ? 3 : 5)
+    setDotsRepeat(isAccordionOpen ? 15 : 3)
   }, [isAccordionOpen])
 
   return (
     <View style={styles.container}>
       <VerticalDots dotsRepeat={dotsRepeat} />
-      <AccordionComponent setAccordionState={setIsAccordionOpen} title="1 AED = PHP 14.24">
+      <AccordionComponent
+        setAccordionState={setIsAccordionOpen}
+        exchangeRate="14"
+        exchangeCurrency="PHP">
         <FeesInformation />
       </AccordionComponent>
     </View>

@@ -24,15 +24,13 @@ const FeesInformation = (): ReactElement => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
     alignSelf: 'flex-start'
   },
   header: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 15,
-    textAlign: 'center'
+    color: '#727c97',
+    marginBottom: 15
   },
   itemContainer: {
     backgroundColor: '#fff',
@@ -45,13 +43,13 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   amountText: {
-    fontSize: 18,
-    color: '#333'
+    fontSize: 14,
+    color: '#9fa8b9'
   },
   feeText: {
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: 'bold',
-    color: '#007AFF' // Blue color for emphasis
+    color: '#007AFF'
   }
 })
 

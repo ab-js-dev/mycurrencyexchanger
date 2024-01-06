@@ -11,7 +11,13 @@ const VerticalDots: React.FC<VerticalDotsProps> = ({ dotsRepeat }): ReactElement
   return (
     <TouchableOpacity style={styles.dots} testID="touchable-opacity">
       {dotsArray.map((_, index) => (
-        <Entypo key={index} name="dots-three-vertical" size={24} color="black" testID="dot-icon" />
+        <Entypo
+          key={index}
+          name="dots-three-vertical"
+          size={24}
+          color="#aec0d4"
+          testID="dot-icon"
+        />
       ))}
     </TouchableOpacity>
   )
