@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Keyboard, TouchableWithoutFeedback, View } from 'react-native'
 import ExchangeField from '@organisms/exchange-field'
 import FeesData from '@organisms/fees-data'
 import useCurrencyCalculator from '@hooks/use-currency-calculator'
@@ -23,34 +23,36 @@ const CalculatorScreen: React.FC = () => {
   const onTransferPress = (): void => {}
   const { showError, setShowError } = useHandleLoadingError(loadingDataError)
   return (
-    <View>
-      <ExchangeField
-        isCountryFieldDisabled={true}
-        initialCountryCode="AE"
-        buttonText="You will send"
-        onAmountChange={setAmount}
-        onCountryChange={() => null}
-      />
-      <FeesData exchangeCurrency={currency} exchangeRate={rate?.toString()} />
-      <ExchangeField
-        isCountryFieldDisabled={false}
-        buttonText="Receptient gets"
-        isEditable={false}
-        value={convertedAmount}
-        onAmountChange={() => null}
-        onCountryChange={setCountry}
-      />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View>
+        <ExchangeField
+          isCountryFieldDisabled={true}
+          initialCountryCode="AE"
+          buttonText="You will send"
+          onAmountChange={setAmount}
+          onCountryChange={() => null}
+        />
+        <FeesData exchangeCurrency={currency} exchangeRate={rate?.toString()} />
+        <ExchangeField
+          isCountryFieldDisabled={false}
+          buttonText="Receptient gets"
+          isEditable={false}
+          value={convertedAmount}
+          onAmountChange={() => null}
+          onCountryChange={setCountry}
+        />
 
-      <StartTransfer onPress={onTransferPress} disabled={!isButtonEnabled} />
+        <StartTransfer onPress={onTransferPress} disabled={!isButtonEnabled} />
 
-      <ErrorModal
-        showError={showError}
-        errorMessage={loadingDataError}
-        onClose={() => {
-          setShowError(false)
-        }}
-      />
-    </View>
+        <ErrorModal
+          showError={showError}
+          errorMessage={loadingDataError}
+          onClose={() => {
+            setShowError(false)
+          }}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   )
 }
 export default CalculatorScreen

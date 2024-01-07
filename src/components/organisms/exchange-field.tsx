@@ -32,6 +32,7 @@ const ExchangeField: React.FC<ExchangeFieldProps> = ({
           onCountryChange(countryCode)
         }}
       />
+
       <InputField
         isEditable={isEditable}
         calculatedValue={value}
