@@ -37,7 +37,7 @@ const InputField: React.FC<InputFieldProps> = ({
 const styles = StyleSheet.create({
   input: {
     flex: 1,
-    height: 100,
+    height: 70,
     paddingHorizontal: 10,
     fontSize: 18,
     fontWeight: 'bold',

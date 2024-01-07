@@ -62,19 +62,17 @@ const FlagSelect = (props: FlagSelectProps): ReactElement => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    padding: 10
+    paddingRight: 10
   },
   button: {
     backgroundColor: '#6200EE',
     borderRadius: 5,
     flexDirection: 'column',
     alignItems: 'flex-start',
-    justifyContent: 'center',
     padding: 10,
     gap: 10,
-    width: 140
+    width: 140,
+    height: 70
   },
   flagContainer: {
     flexDirection: 'row',
