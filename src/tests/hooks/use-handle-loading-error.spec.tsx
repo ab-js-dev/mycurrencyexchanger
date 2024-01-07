@@ -9,7 +9,7 @@ describe('useHandleLoadingError', () => {
   })
 
   it('sets showError to true when there is an error', () => {
-    const { result, rerender } = renderHook(({ error }) => useHandleLoadingError(error as string), {
+    const { result, rerender } = renderHook(({ error }) => useHandleLoadingError(error), {
       initialProps: { error: '' }
     })
 
