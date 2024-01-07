@@ -1,5 +1,5 @@
 import React from 'react'
-import { Keyboard, TouchableWithoutFeedback, View } from 'react-native'
+import { Keyboard, Platform, TouchableWithoutFeedback, View } from 'react-native'
 import ExchangeField from '@organisms/exchange-field'
 import FeesData from '@organisms/fees-data'
 import useCurrencyCalculator from '@hooks/use-currency-calculator'
@@ -22,8 +22,9 @@ const CalculatorScreen: React.FC = () => {
 
   const onTransferPress = (): void => {}
   const { showError, setShowError } = useHandleLoadingError(loadingDataError)
+  const isWeb = Platform.OS === 'web'
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+    <TouchableWithoutFeedback onPress={isWeb ? () => null : Keyboard.dismiss} accessible={false}>
       <View>
         <ExchangeField
           isCountryFieldDisabled={true}

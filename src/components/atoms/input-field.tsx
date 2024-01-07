@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { TextInput, StyleSheet, type TextInputProps } from 'react-native'
+import { debounce } from 'lodash'
 
 type InputFieldProps = {
   isEditable?: boolean
@@ -13,9 +14,17 @@ const InputField: React.FC<InputFieldProps> = ({
   onAmountChange
 }) => {
   const [value, setValue] = React.useState<string>('')
+
+  const debouncedOnAmountChange = useCallback(
+    debounce((val: string) => {
+      onAmountChange(val)
+    }, 500),
+    [onAmountChange]
+  )
+
   const onChange = (val: string): void => {
-    onAmountChange(val)
     setValue(val)
+    debouncedOnAmountChange(val)
   }
 
   useEffect(() => {

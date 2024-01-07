@@ -1,5 +1,5 @@
 import { calculateFinalAmount } from '@utils/exchange-calculations'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import useGetCurrencyExchange from './use-get-currency-exchange'
 import { type CountryData } from '@static/countries'
 import { getCountryByCountryCodeFromList } from '@utils/countries'
@@ -28,19 +28,23 @@ const useCurrencyCalculator = (): CurrencyCalculator => {
   const [loadingDataError, setLoadingDataError] = useState<string>('')
   const { data: currencyFromBE, error: backendError } = useGetCurrencyExchange()
 
-  const handleDataChange = (): void => {
+  const handleDataChange = useCallback((): void => {
     const targtedCountry = getCountryByCountryCodeFromList(country, currencyList)
     if (targtedCountry === undefined) return
-    setFinalAmount(prevFinalAmount => {
+    setFinalAmount(_prevFinalAmount => {
       const finalAmount = calculateFinalAmount(amount, targtedCountry.rate)
       return finalAmount
     })
     setNumbersAfterDot(targtedCountry.numbersAfterDotsForCurrency)
     setRate(targtedCountry.rate)
     setCurrency(targtedCountry.currency)
-  }
+  }, [amount, country, currencyList])
+
   useEffect(() => {
-    if (amount === 0 || amount < 100) return
+    if (amount === 0 || amount < 100) {
+      setFinalAmount(0)
+      return
+    }
     handleDataChange()
   }, [amount])
 
