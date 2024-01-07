@@ -20,6 +20,7 @@ const RenderItem = ({
     <Text style={styles.label}>{country.currency}</Text>
   </TouchableOpacity>
 )
+
 export const CountryPicker = (props: {
   selectedCountry: string
   setSelectedCountry: (countryCode: string) => void

@@ -75,7 +75,7 @@ describe('InputField Component', () => {
     const { getByTestId } = render(<InputField onAmountChange={() => {}} />)
     expect(getByTestId('inputField').props.style).toMatchObject({
       flex: 1,
-      height: 100,
+      height: 70,
       paddingHorizontal: 10,
       fontSize: 18,
       fontWeight: 'bold',

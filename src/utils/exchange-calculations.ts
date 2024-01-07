@@ -36,8 +36,6 @@ export const calculateFees = (amount: number): number => {
  * @returns The final amount after deducting fees and applying the exchange rate.
  */
 export const calculateFinalAmount = (amount: number, rate: number): number => {
-  console.log('calculateFinalAmount', amount, rate)
-
   const fees = calculateFees(amount)
   return calculateExchange(rate, amount - fees)
 }

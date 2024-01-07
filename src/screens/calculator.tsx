@@ -3,11 +3,14 @@ import { View } from 'react-native'
 import ExchangeField from '@organisms/exchange-field'
 import FeesData from '@organisms/fees-data'
 import useCurrencyCalculator from '@hooks/use-currency-calculator'
+import StartTransfer from '@components/molecules/start-transfer'
 
 const CalculatorScreen: React.FC = () => {
-  const { currency, numbersAfterDot, finalAmount, rate, setAmount, setCountry } =
+  const { currency, numbersAfterDot, finalAmount, rate, isButtonEnabled, setAmount, setCountry } =
     useCurrencyCalculator()
   const convertedAmount = finalAmount.toFixed(numbersAfterDot).toString()
+
+  const onTransferPress = (): void => {}
 
   return (
     <View>
@@ -27,6 +30,8 @@ const CalculatorScreen: React.FC = () => {
         onAmountChange={() => null}
         onCountryChange={setCountry}
       />
+
+      <StartTransfer onPress={onTransferPress} disabled={!isButtonEnabled} />
     </View>
   )
 }

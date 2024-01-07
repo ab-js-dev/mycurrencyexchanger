@@ -1,5 +1,9 @@
-import { countriesData } from '@static/countries'
-import { getAllCountries, getCountryByCountryCode } from '@utils/countries'
+import { type CountryData, countriesData } from '@static/countries'
+import {
+  getAllCountries,
+  getCountryByCountryCode,
+  getCountryByCountryCodeFromList
+} from '@utils/countries'
 
 describe('Country Data Functions', () => {
   describe('getAllCountries', () => {
@@ -31,6 +35,35 @@ describe('Country Data Functions', () => {
 
     it('returns undefined when the country code is an empty string', () => {
       const country = getCountryByCountryCode('')
+      expect(country).toBeUndefined()
+    })
+  })
+  describe('getCountryByCountryCodeFromList', () => {
+    it('returns the correct country data for a valid country code from a given list', () => {
+      const testCode = 'US'
+      const list: CountryData[] = [
+        { countryCode: 'CA', currency: 'CAD', numbersAfterDotsForCurrency: 2, rate: 1 },
+        { countryCode: 'US', currency: 'USD', numbersAfterDotsForCurrency: 2, rate: 1 },
+        { countryCode: 'MX', currency: 'MXN', numbersAfterDotsForCurrency: 2, rate: 1 }
+      ]
+      const country = getCountryByCountryCodeFromList(testCode, list)
+      expect(country).toEqual(list.find(c => c.countryCode === testCode))
+    })
+
+    it('returns undefined for an invalid country code from a given list', () => {
+      const invalidCode = 'XX'
+      const list: CountryData[] = [
+        { countryCode: 'CA', currency: 'CAD', numbersAfterDotsForCurrency: 2, rate: 1 },
+        { countryCode: 'US', currency: 'USD', numbersAfterDotsForCurrency: 2, rate: 1 }
+      ]
+      const country = getCountryByCountryCodeFromList(invalidCode, list)
+      expect(country).toBeUndefined()
+    })
+
+    it('returns undefined when the list is empty', () => {
+      const testCode = 'US'
+      const list: CountryData[] = []
+      const country = getCountryByCountryCodeFromList(testCode, list)
       expect(country).toBeUndefined()
     })
   })
