@@ -11,7 +11,7 @@ const useGetCurrencyExchange = (): GetCurrencyExchange => {
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
-        const response = await fetch('https://anis-currency.free.beeceptor.com/exchange')
+        const response = await fetch('https://anis-currency.free.mockoapp.net/rates')
         const json = (await response.json()) as CountryData[]
         setData(json)
       } catch (errorBe) {

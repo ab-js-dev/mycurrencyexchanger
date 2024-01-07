@@ -28,11 +28,8 @@ const useCurrencyCalculator = (): CurrencyCalculator => {
   const [loadingDataError, setLoadingDataError] = useState<string>('')
   const { data: currencyFromBE, error: backendError } = useGetCurrencyExchange()
 
-  useEffect(() => {
-    if (amount === 0 || country === 'AE') return
-
+  const handleDataChange = (): void => {
     const targtedCountry = getCountryByCountryCodeFromList(country, currencyList)
-
     if (targtedCountry === undefined) return
     setFinalAmount(prevFinalAmount => {
       const finalAmount = calculateFinalAmount(amount, targtedCountry.rate)
@@ -41,7 +38,16 @@ const useCurrencyCalculator = (): CurrencyCalculator => {
     setNumbersAfterDot(targtedCountry.numbersAfterDotsForCurrency)
     setRate(targtedCountry.rate)
     setCurrency(targtedCountry.currency)
-  }, [amount, country])
+  }
+  useEffect(() => {
+    if (amount === 0 || amount < 100) return
+    handleDataChange()
+  }, [amount])
+
+  useEffect(() => {
+    if (country === 'AE') return
+    handleDataChange()
+  }, [country])
 
   useEffect(() => {
     setIsButtonEnabled(amount > 0 && finalAmount > 0)
