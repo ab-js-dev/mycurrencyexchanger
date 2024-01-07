@@ -10,15 +10,17 @@ const RenderItem = ({
   country: Country
   setSelectedCountry: (countryCode: string) => void
 }): ReactElement => (
-  <TouchableOpacity
-    testID={`${country.countryCode}-country`}
-    style={styles.itemContainer}
-    key={country.countryCode}
-    onPress={() => {
-      setSelectedCountry(country.countryCode)
-    }}>
-    <Text style={styles.label}>{country.currency}</Text>
-  </TouchableOpacity>
+  <ScrollView style={{ flex: 1 }}>
+    <TouchableOpacity
+      testID={`${country.countryCode}-country`}
+      style={styles.itemContainer}
+      key={country.countryCode}
+      onPress={() => {
+        setSelectedCountry(country.countryCode)
+      }}>
+      <Text style={styles.label}>{country.currency}</Text>
+    </TouchableOpacity>
+  </ScrollView>
 )
 
 export const CountryPicker = (props: {
@@ -29,15 +31,14 @@ export const CountryPicker = (props: {
   const countries = getAllCountries()
 
   return (
-    <ScrollView style={{ flex: 1 }} testID="countryPicker">
-      <FlatList
-        data={countries}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <RenderItem country={item} setSelectedCountry={setSelectedCountry} />
-        )}
-      />
-    </ScrollView>
+    <FlatList
+      testID="countryPicker"
+      data={countries}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item }) => (
+        <RenderItem country={item} setSelectedCountry={setSelectedCountry} />
+      )}
+    />
   )
 }
 
