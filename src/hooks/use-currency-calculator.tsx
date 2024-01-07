@@ -11,6 +11,7 @@ interface CurrencyCalculator {
   country: string
   numbersAfterDot: number
   rate: number
+  loadingDataError: string
   setAmount: (newAmount: number) => void
   setCountry: (newCurrency: any) => void
 }
@@ -24,8 +25,8 @@ const useCurrencyCalculator = (): CurrencyCalculator => {
   const [numbersAfterDot, setNumbersAfterDot] = useState(2)
   const [rate, setRate] = useState(1)
   const [currencyList, setCurrencyList] = useState<CountryData[]>([])
-
-  const currencyFromBE = useGetCurrencyExchange()
+  const [loadingDataError, setLoadingDataError] = useState<string>('')
+  const { data: currencyFromBE, error: backendError } = useGetCurrencyExchange()
 
   useEffect(() => {
     if (amount === 0 || country === 'AE') return
@@ -50,6 +51,10 @@ const useCurrencyCalculator = (): CurrencyCalculator => {
     setCurrencyList(currencyFromBE)
   }, [currencyFromBE])
 
+  useEffect(() => {
+    setLoadingDataError(backendError)
+  }, [backendError])
+
   return {
     finalAmount,
     isButtonEnabled,
@@ -57,6 +62,7 @@ const useCurrencyCalculator = (): CurrencyCalculator => {
     rate,
     country,
     numbersAfterDot,
+    loadingDataError,
     setAmount,
     setCountry
   }

@@ -1,8 +1,12 @@
 import { type CountryData } from '@static/countries'
 import { useState, useEffect } from 'react'
-
-const useGetCurrencyExchange = (): CountryData[] => {
+interface GetCurrencyExchange {
+  data: CountryData[]
+  error: string
+}
+const useGetCurrencyExchange = (): GetCurrencyExchange => {
   const [data, setData] = useState<CountryData[]>([])
+  const [error, setError] = useState<string>('')
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
@@ -10,8 +14,8 @@ const useGetCurrencyExchange = (): CountryData[] => {
         const response = await fetch('https://anis-currency.free.beeceptor.com/exchange')
         const json = (await response.json()) as CountryData[]
         setData(json)
-      } catch (error) {
-        console.error('Error fetching data: ', error)
+      } catch (errorBe) {
+        setError(`Error fetching data: ${JSON.stringify(errorBe)}`)
         setData([])
       }
     }
@@ -19,7 +23,7 @@ const useGetCurrencyExchange = (): CountryData[] => {
     void fetchData()
   }, [])
 
-  return data
+  return { data, error }
 }
 
 export default useGetCurrencyExchange
